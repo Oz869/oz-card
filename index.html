@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>עוז כהן - עורך דין</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: #0a0a0a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+.card {
+  background: linear-gradient(145deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  border-radius: 20px;
+  padding: 40px 35px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(233,196,106,0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+.scales {
+  font-size: 48px;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+.name {
+  font-size: 32px;
+  font-weight: 700;
+  color: #e9c46a;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}
+.title {
+  font-size: 18px;
+  color: #a8b2d1;
+  margin-bottom: 25px;
+  font-weight: 300;
+}
+.divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #e9c46a, transparent);
+  margin: 20px 0;
+}
+.specialties {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 25px;
+}
+.specialty {
+  background: rgba(233,196,106,0.1);
+  border: 1px solid rgba(233,196,106,0.2);
+  color: #e9c46a;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  color: #ccd6f6;
+  font-size: 16px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.contact-item:hover { color: #e9c46a; }
+.contact-item .icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(233,196,106,0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+.save-btn {
+  display: block;
+  width: 100%;
+  margin-top: 25px;
+  padding: 14px;
+  background: linear-gradient(135deg, #e9c46a 0%, #d4a843 100%);
+  color: #1a1a2e;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.2s;
+}
+.save-btn:hover { transform: translateY(-2px); }
+.footer {
+  text-align: center;
+  margin-top: 20px;
+  color: rgba(168,178,209,0.4);
+  font-size: 12px;
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="scales">&#9878;</div>
+  <div class="name">עוז כהן</div>
+  <div class="title">עורך דין | נזיקין וביטוח לאומי</div>
+
+  <div class="divider"></div>
+
+  <div class="specialties">
+    <span class="specialty">תאונות דרכים</span>
+    <span class="specialty">נזקי גוף</span>
+    <span class="specialty">ביטוח לאומי</span>
+    <span class="specialty">רשלנות רפואית</span>
+  </div>
+
+  <a href="tel:0507114151" class="contact-item">
+    <span class="icon">&#128222;</span>
+    <span>050-711-4151</span>
+  </a>
+
+  <a href="mailto:ozco.law@gmail.com" class="contact-item">
+    <span class="icon">&#9993;</span>
+    <span>ozco.law@gmail.com</span>
+  </a>
+
+  <a href="#" class="contact-item">
+    <span class="icon">&#127968;</span>
+    <span>אילנית גדקר אהרוני - עורכי דין ונוטריון</span>
+  </a>
+
+  <a href="https://www.linkedin.com/in/oz-cohen" class="contact-item" target="_blank">
+    <span class="icon">in</span>
+    <span>LinkedIn</span>
+  </a>
+
+  <button class="save-btn" onclick="saveContact()">&#128205; שמור איש קשר</button>
+
+  <div class="footer">עו"ד עוז כהן</div>
+</div>
+
+<script>
+function saveContact() {
+  const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:עוז כהן - עו"ד
+TEL:0507114151
+EMAIL:ozco.law@gmail.com
+TITLE:עורך דין
+NOTE:נזיקין | ביטוח לאומי | תאונות דרכים
+END:VCARD`;
+
+  const blob = new Blob([vcard], { type: 'text/vcard' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'oz-cohen-lawyer.vcf';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>
